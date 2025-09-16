@@ -26,8 +26,8 @@ PG_USER="sharedpg"
 PG_PASSWORD="pgpass"
 # PG_DATABASES akan diisi otomatis dengan semua database yang ada
 
-# Konfigurasi Google Drive (opsional)
-ENABLE_GOOGLE_DRIVE_UPLOAD=true
+# Konfigurasi Google Drive (opsional) - DINONAKTIFKAN
+ENABLE_GOOGLE_DRIVE_UPLOAD=false
 GOOGLE_DRIVE_FOLDER_ID=""  # ID folder Google Drive tujuan (kosongkan untuk root)
 RCLONE_CONFIG_NAME="gdrive"  # Nama konfigurasi rclone
 
@@ -122,7 +122,7 @@ backup_postgresql() {
     unset PGPASSWORD
 }
 
-# Fungsi untuk upload ke Google Drive
+# Fungsi untuk upload ke Google Drive (DINONAKTIFKAN - backup hanya disimpan lokal)
 upload_to_google_drive() {
     if [ "$ENABLE_GOOGLE_DRIVE_UPLOAD" = true ]; then
         log_message "Memulai upload ke Google Drive..."
@@ -166,7 +166,8 @@ upload_to_google_drive() {
         
         log_message "Upload ke Google Drive selesai"
     else
-        log_message "Upload ke Google Drive dinonaktifkan"
+        log_message "Upload ke Google Drive dinonaktifkan - backup hanya disimpan di server lokal"
+        log_message "Lokasi backup: $BACKUP_DIR"
     fi
 }
 

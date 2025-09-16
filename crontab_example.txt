@@ -1,0 +1,20 @@
+# Contoh konfigurasi cronjob untuk database backup
+# Edit file ini dengan: sudo crontab -e
+
+# Backup database setiap hari pada jam 2:00 AM
+0 2 * * * /path/to/db_backup.sh
+
+# Backup database setiap 6 jam
+0 */6 * * * /path/to/db_backup.sh
+
+# Backup database setiap hari kerja (Senin-Jumat) pada jam 1:00 AM
+0 1 * * 1-5 /path/to/db_backup.sh
+
+# Backup database setiap minggu pada hari Minggu jam 3:00 AM
+0 3 * * 0 /path/to/db_backup.sh
+
+# Backup database setiap bulan pada tanggal 1 jam 4:00 AM
+0 4 1 * * /path/to/db_backup.sh
+
+# Contoh dengan output log tambahan
+0 2 * * * /path/to/db_backup.sh >> /var/log/cron_backup.log 2>&1
